@@ -1,0 +1,59 @@
+name: Deploy Project
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Input text version'
+        required: true
+        default: '1.0.0'
+        type: string
+      production:
+        description: 'Production deployment'
+        required: false
+        default: false
+        type: boolean
+      module:
+        description: 'Select module'
+        required: true
+        default: 'module1'
+        type: choice
+        options:
+          - module1
+          - module2
+          - module3
+      deployment:
+        description: 'Deployment checkbox'
+        required: false
+        default: false
+        type: boolean
+      market_deployment:
+        description: 'Input market deployment'
+        required: true
+        default: 'market1'
+        type: string
+      environment_deployment:
+        description: 'Select environment deployment'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Display inputs
+        run: |
+          echo "Version: ${{ github.event.inputs.version }}"
+          echo "Production: ${{ github.event.inputs.production }}"
+          echo "Module: ${{ github.event.inputs.module }}"
+          echo "Deployment: ${{ github.event.inputs.deployment }}"
+          echo "Market Deployment: ${{ github.event.inputs.market_deployment }}"
+          echo "Environment Deployment: ${{ github.event.inputs.environment_deployment }}"
