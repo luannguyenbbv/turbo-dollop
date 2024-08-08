@@ -28,10 +28,22 @@ on:
         default: false
         type: boolean
       market_deployment:
-        description: 'Input market deployment'
+        description: 'Select market deployment'
         required: true
-        default: 'market1'
-        type: string
+        default: 'at'
+        type: choice
+        options:
+          - at
+          - at2
+          - ch
+          - ch2
+          - cz
+          - cz2
+          - it
+          - ro
+          - sb
+          - hu
+          - axhu
       environment_deployment:
         description: 'Select environment deployment'
         required: true
