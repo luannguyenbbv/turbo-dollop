@@ -34,22 +34,4 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
 
-      - name: Set up environment
-        run: echo "Environment: ${{ github.event.inputs.environment }}"
-
-      - name: Set up market
-        run: echo "Market: ${{ github.event.inputs.market }}"
-
-      - name: Build Docker image
-        run: |
-          docker build -t my-app:${{ github.event.inputs.branch }} .
-          
-      - name: Push Docker image
-        run: |
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push my-app:${{ github.event.inputs.branch }}
-
-      - name: Deploy to environment
-        run: |
-          # Add deployment steps here
-          echo "Deploying to ${{ github.event.inputs.environment }} environment in ${{ github.event.inputs.market }} market"
+   
